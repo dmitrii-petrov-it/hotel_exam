@@ -1,0 +1,47 @@
+@startuml
+left to right direction
+skinparam actorStyle awesome
+
+actor "Администратор" as Admin
+actor "Ресепшионист" as Receptionist
+
+rectangle "Система управления отелем" {
+
+  usecase "Аутентификация\n(Вход в систему)" as UC_Login
+
+  usecase "Управление бронированиями" as UC_Booking
+  usecase "Добавить бронирование" as UC_AddBooking
+  usecase "Изменить бронирование" as UC_EditBooking
+  usecase "Удалить бронирование" as UC_DeleteBooking
+
+  usecase "Управление номерами" as UC_Rooms
+  usecase "Поиск и фильтрация\nномеров" as UC_SearchRooms
+
+  usecase "Управление клиентами" as UC_Clients
+  usecase "Поиск и фильтрация\nклиентов" as UC_SearchClients
+
+  usecase "Просмотр статистики" as UC_Stats
+  usecase "Управление\nпользователями" as UC_Users
+}
+
+Admin --> UC_Login
+Receptionist --> UC_Login
+
+Admin --> UC_Booking
+Receptionist --> UC_Booking
+
+UC_Booking --> UC_AddBooking
+UC_Booking --> UC_EditBooking
+UC_Booking --> UC_DeleteBooking
+
+Admin --> UC_Rooms
+Receptionist --> UC_SearchRooms
+Admin --> UC_SearchRooms
+
+Admin --> UC_Clients
+Receptionist --> UC_SearchClients
+
+Admin --> UC_Stats
+Admin --> UC_Users
+
+@enduml
